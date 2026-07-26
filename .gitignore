@@ -1,0 +1,14 @@
+# Entornos virtuales y variables de entorno
+.env
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Base de datos vectorial local (se genera en tiempo de ejecución)
+chroma_db/
+faiss_index/
+
+# Archivos del sistema y logs
+.DS_Store
+*.log
