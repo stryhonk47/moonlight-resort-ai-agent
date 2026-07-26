@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  moonlight-bot:
+    build: .
+    container_name: moonlight_resort_ai_agent
+    ports:
+      - "8501:8501"
+    environment:
+      - COHERE_API_KEY=${COHERE_API_KEY}
+      - CHROMA_DB_DIR=/app/chroma_db
+    restart: always
