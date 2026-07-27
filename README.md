@@ -109,14 +109,14 @@ Puedes realizar preguntas naturales al conserje virtual como:
 ### ☁️ Configuración de la Infraestructura Cloud (OCI)
 
 El despliegue en producción fue aprovisionado e implementado sobre una instancia de computación de alto rendimiento en **Oracle Cloud Infrastructure (OCI)** bajo la siguiente configuración técnica:
-(data/images/captura_instancia.png)
+![📸Captura de pantalla del panel OCI.](data/images/captura_instancia.png)
 
 * **Proveedor Cloud:** Oracle Cloud Infrastructure (OCI) - *Cloud Free Tier*.
 * **Forma de la Instancia (Shape):** `VM.Standard.A1.Flex` (Arquitectura Ampere Altra ARM64).
 * **Recursos Asignados:** **4 vCPUs** y **24 GB de Memoria RAM**, proporcionando una holgura excepcional para la ejecución del motor de embeddings locales (*HuggingFace*), la base de datos vectorial (*ChromaDB*) y el servidor *Streamlit* sin riesgos de saturación de memoria.
 * **Sistema Operativo:** Ubuntu Linux 22.04 LTS.
 * **Configuración de Red y Firewall (Security Lists):**
-(data/images/Captura_vcn.png)
+![📸Captura de la configuracion del VCN.](data/images/Captura_vcn.png)
   * **Tráfico de entrada (Ingress):** Regla TCP habilitada desde `0.0.0.0/0` para el puerto de servicio `8501` en modo **Stateful** (con estado) para permitir conexiones web bidireccionales continuas.
   * **Firewall del Sistema Operativo:** Apertura y persistencia de puertos internos mediante políticas de seguridad de `iptables` / `netfilter-persistent`.
 * **Gestión de Contenedores:** Servicio orquestado en segundo plano mediante el daemon de Docker (`docker-compose up -d`) con volúmenes locales asignados para la persistencia del índice vectorial (`/app/chroma_db`).
