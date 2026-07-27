@@ -11,10 +11,10 @@ El proyecto se encuentra empaquetado en contenedores y desplegado en un servidor
 * **URL Pública del Agente:** [http://149.130.163.156:8501](http://149.130.163.156:8501)
 
 ### 📸 Captura de pantalla del sistema en producción:
-![Evidencia de Despliegue en OCI](evidencia_despliegue_oci.jpeg)
+![Evidencia de Despliegue en OCI](evidencia_despliegue_oci.jpg)
 
 ### 💻 Captura de pantalla de la terminal (Despliegue y compilación Docker):
-![Despliegue en Docker y OCI](Despliegue_docker_oci.jpg)
+![Despliegue en Docker y OCI](Despliegue_docker_oci.jpeg)
 
 ---
 
