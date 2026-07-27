@@ -11,10 +11,10 @@ El proyecto se encuentra empaquetado en contenedores y desplegado en un servidor
 * **URL Pública del Agente:** [http://149.130.163.156:8501](http://149.130.163.156:8501)
 
 ### 📸 Captura de pantalla del sistema en producción:
-![Evidencia de Despliegue en OCI](evidencia_despliegue_oci.jpg)
+![Evidencia de Despliegue en OCI](data/images/evidencia_despliegue_oci.jpg)
 
 ### 💻 Captura de pantalla de la terminal (Despliegue y compilación Docker):
-![Despliegue en Docker y OCI](Despliegue_docker_oci.jpeg)
+![Despliegue en Docker y OCI](data/images/Despliegue_docker_oci.jpeg)
 
 ---
 
@@ -105,3 +105,18 @@ Puedes realizar preguntas naturales al conserje virtual como:
 * *"¿Puedo llevar a mi mascota al hotel? ¿Cuáles son las reglas de la piscina?"*
 * *"¿Puedes mostrarme una foto de la piscina para adultos?"*
 * *"¿A qué hora abre el restaurante gourmet y cuál es el código de vestimenta?"*
+
+### ☁️ Configuración de la Infraestructura Cloud (OCI)
+
+El despliegue en producción fue aprovisionado e implementado sobre una instancia de computación de alto rendimiento en **Oracle Cloud Infrastructure (OCI)** bajo la siguiente configuración técnica:
+(data/images/captura_instancia.png)
+
+* **Proveedor Cloud:** Oracle Cloud Infrastructure (OCI) - *Cloud Free Tier*.
+* **Forma de la Instancia (Shape):** `VM.Standard.A1.Flex` (Arquitectura Ampere Altra ARM64).
+* **Recursos Asignados:** **4 vCPUs** y **24 GB de Memoria RAM**, proporcionando una holgura excepcional para la ejecución del motor de embeddings locales (*HuggingFace*), la base de datos vectorial (*ChromaDB*) y el servidor *Streamlit* sin riesgos de saturación de memoria.
+* **Sistema Operativo:** Ubuntu Linux 22.04 LTS.
+* **Configuración de Red y Firewall (Security Lists):**
+(data/images/Captura_vcn.png)
+  * **Tráfico de entrada (Ingress):** Regla TCP habilitada desde `0.0.0.0/0` para el puerto de servicio `8501` en modo **Stateful** (con estado) para permitir conexiones web bidireccionales continuas.
+  * **Firewall del Sistema Operativo:** Apertura y persistencia de puertos internos mediante políticas de seguridad de `iptables` / `netfilter-persistent`.
+* **Gestión de Contenedores:** Servicio orquestado en segundo plano mediante el daemon de Docker (`docker-compose up -d`) con volúmenes locales asignados para la persistencia del índice vectorial (`/app/chroma_db`).
